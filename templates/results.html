@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+    <h1>Model Behavior with a Chunk of Provided Data</h1>
+
+    <div id="plot"></div>
+
+    <script>
+        var actual_values = {{ actual_values | tojson }};
+        var predicted_values = {{ predicted_values | tojson }};
+        var dates = {{ dates | tojson }}; // Use dates from the uploaded_data DataFrame
+
+        var data = [
+            {
+                x: dates, // Use dates as x-axis values
+                y: actual_values,
+                mode: 'lines+markers',
+                name: 'Actual'
+            },
+            {
+                x: dates, // Use dates as x-axis values
+                y: predicted_values,
+                mode: 'lines+markers',
+                name: 'Predicted'
+            }
+        ];
+
+        var layout = {
+            title: 'Actual vs. Predicted Close Prices',
+            xaxis: {
+                title: 'Date'
+            },
+            yaxis: {
+                title: 'Close Prices'
+            }
+        };
+
+        Plotly.newPlot('plot', data, layout);
+    </script>
+
+    <a href="future.html" target="_blank"><button type="button">Future Predictions</button></a>
+</body>
+</html>

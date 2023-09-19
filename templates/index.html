@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks Price Predictions</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Stocks Price Predictor</h1>
+        <h2>Please upload a csv file for analysis and predictions</h2>
+        <form method="POST" enctype="multipart/form-data" action="/model_behavior">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Submit</button>
+            <a href="instructions.html" target="_blank"><button type="button">View instructions</button></a>
+        </form>
+    </div>
+</body>
+</html>

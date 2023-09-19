@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future Predictions</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Future Predicted Close Prices</h1>
+
+        <div id="plot"></div>
+
+        <script>
+            var dates = {{ dates | tojson }}; // Use dates from the future_predictions function
+            var predicted_values = {{ predicted_values | tojson }};
+
+            var data = [
+                {
+                    x: dates, // Use dates as x-axis values
+                    y: predicted_values,
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: 'Predicted',
+                    marker: { color: 'green' }
+                }
+            ];
+
+            var layout = {
+                title: 'Future Predicted Close Prices',
+                xaxis: {
+                    title: 'Date'
+                },
+                yaxis: {
+                    title: 'Close Prices'
+                }
+            };
+
+            Plotly.newPlot('plot', data, layout);
+        </script>
+    </div>
+</body>
+</html>
